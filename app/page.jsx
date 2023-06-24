@@ -11,10 +11,10 @@ import Fondo from '@/public/Cloud-background.png'
 export default function Home() {
 
   return (
-  <div className=" flex justify-center items-center w-full h-screen bg-slate-500">
+  <div className=" flex justify-center items-center w-full h-screen  xl:flex-row flex-col">
     {/* <SearchBar/> */}
-    <div id="main" className=" flex flex-row h-[1023px]">
-      <div id="search" className=" w-[459px]">
+    <div id="main" className=" flex xl:flex-row h-[1023px] xl:w-[1440px] w-auto flex-col ">
+      <div id="search" className=" xl:w-auto w-[459px]" >
         <div className=" flex flex-row w-[459px] h-32 justify-center items-center gap-40">
           <button className=" py-2 px-5 text-white bg-gray-500 font-medium">Search for places</button>
           <div className=" bg-gray-500 flex justify-center items-center p-2 rounded-full">
@@ -48,12 +48,12 @@ export default function Home() {
           <p className=" text-lg">Helsinki</p>
         </div>
       </div>
-      <div className=" w-2/3 flex flex-col px-32">
+      <div className=" xl:w-2/3 flex flex-col px-32 bg-[#100E1D] w-[459px]">
         <div className="flex flex-row h-32 items-center justify-end gap-3">
-          <div className=" text-lg w-12 h-12 bg-gray-400 rounded-full font-bold flex justify-center items-center">
-            <button>°C</button>
+          <div className=" text-lg w-12 h-12 bg-[#E7E7EB] rounded-full font-bold flex justify-center items-center">
+            <button className=" font-bold">°C</button>
           </div>
-          <div className=" text-lg w-12 h-12 bg-gray-700 rounded-full font-bold flex justify-center items-center text-white">
+          <div className=" text-lg w-12 h-12 bg-[#585676] rounded-full font-bold flex justify-center items-center text-white">
             <button >°F</button>
           </div>
         </div>
