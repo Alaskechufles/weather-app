@@ -12,7 +12,7 @@ import Fondo from '@/public/Cloud-background.png'
 
 
 
-export default function Face() {
+export default function Face(prop) {
 /*   const [data, setData] = useState([]);
   useEffect(() => {
     fetchData();
@@ -38,7 +38,7 @@ export default function Face() {
     <div id="main" className=" flex md:flex-row w-screen flex-col justify-center items-center md:h-screen ">
       <div id="search" className=" w-full md:w-[459px] " >
         <div className=" flex flex-row w-full h-32 justify-center items-center gap-40">
-          <button className=" py-2 px-5 text-white bg-gray-500 font-medium">Search for places</button>
+          <button onClick={prop.btn} id="button-toggle" className=" py-2 px-5 text-white bg-gray-500 font-medium">Search for places</button>
           <div className=" bg-gray-500 flex justify-center items-center p-2 rounded-full">
             <Image src={Geo} alt="icono target"/>
           </div>

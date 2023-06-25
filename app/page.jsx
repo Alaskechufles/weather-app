@@ -8,33 +8,52 @@ import Face from "@/components/Face";
 
 
 export default function Home() {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    fetchData();
-  }, []);
+  //mostrar y ocultar opciones
+  const [isActive, setIsActive] = useState(false);
+  const toggleClass = () => {
+    setIsActive(!isActive);
+  }
+  //desplegar barra
+  const claseElemento = isActive ? " hidden  bg-[#1E213A] md:w-5/12 w-full h-screen absolute z-20 left-2 top-0 ease-in" : "bg-[#1E213A] md:w-5/12 w-full h-screen absolute z-20 left-2 top-0 ease-in"
+ 
 
-  const ciudad = ''
-  const url = 'https://api.openweathermap.org/data/2.5/forecast?q=lima&appid=5865f4c96c1fa0c939787c791648058e'
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch('https://api.openweathermap.org/data/2.5/forecast?q=lima&appid=5865f4c96c1fa0c939787c791648058e');
-      const jsonData = await response.json();
-      setData(jsonData);
-    } catch (error) {
-      console.log(error);
-    }
+
+  const [city, setCity] = useState('arequipa');
+  const [weatherData, setWeatherData] = useState(null);
+
+  const handleInputChange = (event) => {
+    setCity(event.target.value);
   };
 
+  const handleSearch = async () => {
+    if (city) {
+      
+      const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=5865f4c96c1fa0c939787c791648058e`;
 
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        setWeatherData(data);
+        console.log(data)
+      } catch (error) {
+        console.log('Error:', error);
+      }
+    }
+  };
+  
   return (
+
   <div className="flex flex-row bg-[#100E1D] items-center justify-center w-[1440px]">
-    <div className=" hidden  bg-[#1E213A] w-full h-[1023px] absolute z-20 left-2">
-      <SearchBar/>
+    
+    <div className={claseElemento}>
+      <SearchBar btn2={toggleClass} ciudad={city} buscar={handleSearch} onch={handleInputChange}/>
     </div>
     <div>
-      <Face/>
+      <Face btn={toggleClass}/>
     </div>
+   
+     
   </div>
    
   );
