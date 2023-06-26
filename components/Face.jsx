@@ -19,11 +19,32 @@ import Card from "@/components/Card";
 import Cursor from "@/public/Cursor";
 import Fondo from '@/public/Cloud-background.png'
 
-/* import React, { useEffect, useState } from 'react'; */
+import React, { useEffect, useState } from 'react';
 
 
 
 export default function Face({btn, forecastData}) {
+//prueba cambio de °C a °F
+const [isActive, setIsActive] = useState(false);
+  const toggleTemp = () => {
+    setIsActive(!isActive);
+  }
+  const tempType = isActive ? (forecastData.list[0].main.temp).toFixed(0):((forecastData.list[0].main.temp)-273.15).toFixed(0)
+  const tempType2 = isActive ? (forecastData.list[12].main.temp_min).toFixed(0):((forecastData.list[12].main.temp_min)-273.15).toFixed(0)
+  const tempType3 = isActive ? (forecastData.list[20].main.temp_min).toFixed(0):((forecastData.list[20].main.temp_min)-273.15).toFixed(0)
+  const tempType4 = isActive ? (forecastData.list[28].main.temp_min).toFixed(0):((forecastData.list[28].main.temp_min)-273.15).toFixed(0)
+  const tempType5 = isActive ? (forecastData.list[36].main.temp_min).toFixed(0):((forecastData.list[36].main.temp_min)-273.15).toFixed(0)
+  const tempType6 = isActive ? (forecastData.list[39].main.temp_min).toFixed(0):((forecastData.list[39].main.temp_min)-273.15).toFixed(0)
+  
+  const tempType2M = isActive ? (forecastData.list[12].main.temp_max).toFixed(0):((forecastData.list[12].main.temp_max)-273.15).toFixed(0)
+  const tempType3M = isActive ? (forecastData.list[20].main.temp_max).toFixed(0):((forecastData.list[20].main.temp_max)-273.15).toFixed(0)
+  const tempType4M = isActive ? (forecastData.list[28].main.temp_max).toFixed(0):((forecastData.list[28].main.temp_max)-273.15).toFixed(0)
+  const tempType5M = isActive ? (forecastData.list[36].main.temp_max).toFixed(0):((forecastData.list[36].main.temp_max)-273.15).toFixed(0)
+  const tempType6M = isActive ? (forecastData.list[39].main.temp_max).toFixed(0):((forecastData.list[39].main.temp_max)-273.15).toFixed(0)
+
+  const tempUnit = isActive ? "°F":"°C"
+
+
 //para formatear la fecha
 const timestamp = forecastData.list[4].dt// Ejemplo de marca de tiempo
 const date = new Date(timestamp * 1000);
@@ -113,15 +134,19 @@ const direccionViento = obtenerDireccionViento(direccionVientoGrados);
 
 console.log(direccionViento);
 // fin de direccion del viento
+//prueba search bar dentro de face
 
 
 
 
   return (
 
-  <div className=" flex justify-center items-center   md:flex-row flex-col ">
+  <div className=" flex justify-center items-center   md:flex-row flex-col md:w-[1440px] object-contain">
+     
+    <div id="main" className=" flex md:flex-row w-screen flex-col justify-center items-center md:h-screen md:w-[1440px] ">
     
-    <div id="main" className=" flex md:flex-row w-screen flex-col justify-center items-center md:h-screen ">
+
+
       <div id="search" className=" w-full md:w-[459px] " >
         <div className=" flex flex-row w-full h-32 justify-center items-center gap-40">
           <button onClick={btn} id="button-toggle" className=" py-2 px-5 text-white bg-gray-500 font-medium">Search for places</button>
@@ -138,8 +163,8 @@ console.log(direccionViento);
           </div>
         </div>
         <div className=" flex flex-row items-end justify-center">
-          <p className=" text-[#E7E7EB] text-9xl font-medium">{((forecastData.list[0].main.temp)-273.15).toFixed(0)}</p>
-          <p className=" text-[#A09FB1] text-5xl font-medium">°C</p>
+          <p className=" text-[#E7E7EB] text-9xl font-medium">{/* ((forecastData.list[0].main.temp)-273.15).toFixed(0) */ tempType}</p>
+          <p className=" text-[#A09FB1] text-5xl font-medium">{tempUnit}</p>
         </div>
         <div className="flex justify-center items-center p-20">
           <p className="font-semibold text-4xl text-[#A09FB1]">{forecastData.list[0].weather[0].main}</p>
@@ -158,20 +183,20 @@ console.log(direccionViento);
       </div>
       <div className=" flex flex-col  bg-[#100E1D] w-full items-center md:w-[981px] md:h-screen justify-center md:pb-12">
         <div className="flex flex-row h-32 items-center md:justify-end gap-3 md:w-full w-4/5 justify-center md:pr-40">
-          <div className=" text-lg w-12 h-12 bg-[#E7E7EB] rounded-full font-bold flex justify-center items-center ">
-            <button className=" font-bold">°C</button>
+          <div className=" text-lg w-12 h-12 bg-[#E7E7EB] rounded-full font-bold flex justify-center items-center hover:cursor-pointer">
+            <button className=" text-lg w-12 h-12 bg-[#E7E7EB] rounded-full font-bold flex justify-center items-center hover:cursor-pointer" onClick={toggleTemp}>°C</button>
           </div>
-          <div className=" text-lg w-12 h-12 bg-[#585676] rounded-full font-bold flex justify-center items-center text-white">
-            <button >°F</button>
+          <div className=" text-lg w-12 h-12 bg-[#585676] rounded-full font-bold flex justify-center items-center text-white hover:cursor-pointer">
+            <button className=" text-lg w-12 h-12 bg-[#585676] rounded-full font-bold flex justify-center items-center text-white hover:cursor-pointer" onClick={toggleTemp}>°F</button>
           </div>
         </div>
         <div className="flex flex-row flex-wrap gap-6 w-full md:w-[980px] justify-center p-10 md:p-0"> 
          {/*Aqui insertar componente de carta*/}
-         <Card formatted={"Tomorrow"} tMin={forecastData.list[12].main.temp_min} tMax={forecastData.list[12].main.temp_max} imagenSegunClima={imagenSegunClima2}/>
-         <Card formatted={formatted2} tMin={forecastData.list[20].main.temp_min} tMax={forecastData.list[20].main.temp_max} imagenSegunClima={imagenSegunClima3}/>
-         <Card formatted={formatted3} tMin={forecastData.list[28].main.temp_min} tMax={forecastData.list[28].main.temp_max} imagenSegunClima={imagenSegunClima4}/>
-         <Card formatted={formatted4} tMin={forecastData.list[36].main.temp_min} tMax={forecastData.list[36].main.temp_max} imagenSegunClima={imagenSegunClima5}/>
-         <Card formatted={formatted5} tMin={forecastData.list[39].main.temp_min} tMax={forecastData.list[39].main.temp_max} imagenSegunClima={imagenSegunClima6}/>
+         <Card formatted={"Tomorrow"} tMin={tempType2} tMax={tempType2M} imagenSegunClima={imagenSegunClima2} tempUnit={tempUnit}/>
+         <Card formatted={formatted2} tMin={tempType3} tMax={tempType3M} imagenSegunClima={imagenSegunClima3} tempUnit={tempUnit}/>
+         <Card formatted={formatted3} tMin={tempType4} tMax={tempType4M} imagenSegunClima={imagenSegunClima4} tempUnit={tempUnit}/>
+         <Card formatted={formatted4} tMin={tempType5} tMax={tempType5M} imagenSegunClima={imagenSegunClima5} tempUnit={tempUnit}/>
+         <Card formatted={formatted5} tMin={tempType6} tMax={tempType6M} imagenSegunClima={imagenSegunClima6} tempUnit={tempUnit}/>
         </div>
         <div className=" font-bold text-[#E7E7EB] pt-[72px] pb-8 text-2xl">
           <p>Today&apos;s Hightlights</p>

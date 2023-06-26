@@ -14,7 +14,7 @@ export default function Home() {
     setIsActive(!isActive);
   }
   //desplegar barra
-  const claseElemento = isActive ? "  bg-[#1E213A] md:w-[459px] w-full h-[90%] md:h-screen absolute z-20  top-0 ease-in duration-500 md:left-[240px]" : " bg-[#1E213A] md:w-[459px] w-full h-screen absolute z-20 top-[-100%] ease-in duration-500 md:left-[240px]"
+  const claseElemento = isActive ? "  bg-[#1E213A] md:w-[459px] w-full h-[90%] md:h-screen absolute z-20  top-0 ease-in duration-500 md:left-0" : " bg-[#1E213A] md:w-[459px] w-full h-screen absolute z-20 top-[-100%] ease-in duration-500 md:left-0"
  
   //traer datos de la API
   const [city, setCity] = useState('Arequipa');

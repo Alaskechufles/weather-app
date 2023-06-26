@@ -16,7 +16,7 @@ export default function SearchBar({btn2,value,onChange,handleSearch}) {
                 </div>
                 <input value={value} onChange={onChange} type="text" placeholder="search location" className=" h-10 bg-[#1E213A] placeholder:text-[#616475] outline-none"/>
             </div>
-            <button className=" bg-[#3C47E9] p-[15px]" onClick={handleSearch}>Search</button>
+            <button className=" bg-[#3C47E9] p-[15px]" onClick={()=>{handleSearch();btn2()}}>Search</button>
         </div>
         <div className="flex flex-col w-full justify-center items-center ">
             <div  className=" flex flex-row justify-between items-center w-2/3 h-16 hover:border hover:border-[#616475] pl-3 pr-2">
