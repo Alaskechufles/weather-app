@@ -1,11 +1,7 @@
 "use client"
 import SearchBar from "@/components/SearchBar";
-
-
 import React, { useEffect, useState } from 'react';
 import Face from "@/components/Face";
-
-
 
 export default function Home() {
   //mostrar y ocultar opciones
@@ -22,7 +18,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchForecastData = async () => {
-      const apiKey = '5865f4c96c1fa0c939787c791648058e'; // Reemplaza con tu clave de API de OpenWeatherMap
+      const apiKey = '5865f4c96c1fa0c939787c791648058e'; 
       const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)}&appid=${apiKey}`;
 
       try {
@@ -42,9 +38,8 @@ export default function Home() {
   };
 
   const handleSearch = async () => {
-    const apiKey = '5865f4c96c1fa0c939787c791648058e'; // Reemplaza con tu clave de API de OpenWeatherMap
+    const apiKey = '5865f4c96c1fa0c939787c791648058e'; 
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)}&appid=${apiKey}`;
-
     try {
       const response = await fetch(apiUrl);
       const data = await response.json();
@@ -53,7 +48,6 @@ export default function Home() {
       console.log('Error:', error);
     }
   };
-  
   
   return (
 

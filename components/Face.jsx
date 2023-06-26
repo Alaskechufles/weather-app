@@ -102,7 +102,7 @@ export default function Face({ btn, forecastData }) {
     console.log(index)
     return imgClima[index]
   }
-  const idSegunClima = forecastData.list[4].weather[0].id
+  const idSegunClima = forecastData.list[0].weather[0].id
   const idSegunClima2 = forecastData.list[12].weather[0].id
   const idSegunClima3 = forecastData.list[20].weather[0].id
   const idSegunClima4 = forecastData.list[28].weather[0].id
