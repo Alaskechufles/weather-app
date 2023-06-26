@@ -49,12 +49,49 @@ export default function Home() {
     }
   };
   
+  const specificSearch1 = async () => {
+    const ciudad = "london"
+    const apiKey = '5865f4c96c1fa0c939787c791648058e'; 
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${ciudad}&appid=${apiKey}`;
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      setForecastData(data);
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  };
+  const specificSearch2 = async () => {
+    const ciudad = "barcelona"
+    const apiKey = '5865f4c96c1fa0c939787c791648058e'; 
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${ciudad}&appid=${apiKey}`;
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      setForecastData(data);
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  };
+  const specificSearch3 = async () => {
+    const ciudad = "long Beach"
+    const apiKey = '5865f4c96c1fa0c939787c791648058e'; 
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${ciudad}&appid=${apiKey}`;
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      setForecastData(data);
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  };
+
   return (
 
   <div className="flex flex-row bg-[#100E1D] items-center justify-center w-[1440px]">
     
     <div className={claseElemento}>
-      <SearchBar btn2={toggleClass} value={city} onChange={handleInputChange} handleSearch={handleSearch}/>
+      <SearchBar btn2={toggleClass} value={city} onChange={handleInputChange} handleSearch={handleSearch} specificSearch1={specificSearch1} specificSearch2={specificSearch2} specificSearch3={specificSearch3}/>
     </div>
     <div>
         {forecastData && (

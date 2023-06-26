@@ -21,8 +21,6 @@ import Fondo from '@/public/Cloud-background.png'
 
 import React, { useEffect, useState } from 'react';
 
-
-
 export default function Face({ btn, forecastData }) {
   //prueba cambio de °C a °F
   const [isActive, setIsActive] = useState(false);
@@ -41,9 +39,8 @@ export default function Face({ btn, forecastData }) {
   const tempType4M = isActive ? ((((forecastData.list[28].main.temp_max) - 273.15) * 9 / 5) + 32).toFixed(0) : ((forecastData.list[28].main.temp_max) - 273.15).toFixed(0)
   const tempType5M = isActive ? ((((forecastData.list[36].main.temp_max) - 273.15) * 9 / 5) + 32).toFixed(0) : ((forecastData.list[36].main.temp_max) - 273.15).toFixed(0)
   const tempType6M = isActive ? ((((forecastData.list[39].main.temp_max) - 273.15) * 9 / 5) + 32).toFixed(0) : ((forecastData.list[39].main.temp_max) - 273.15).toFixed(0)
-
+  //para cambiar las unidades de °F o °C
   const tempUnit = isActive ? "°F" : "°C"
-
 
   //para formatear la fecha
   const timestamp = forecastData.list[4].dt// Ejemplo de marca de tiempo
@@ -129,8 +126,7 @@ export default function Face({ btn, forecastData }) {
     return direccion[indice];
   };
 
-
-  // Uso de la función auxiliar
+  // Uso de la función auxiliar para comvertir grados a direccion cardinal
   const direccionVientoGrados = forecastData.list[0].wind.deg; // Ejemplo de valor en grados
   const direccionViento = obtenerDireccionViento(direccionVientoGrados);
 
@@ -139,12 +135,13 @@ export default function Face({ btn, forecastData }) {
   // para cambiar la direccion del cursor segun la direccion del viento
   const obtenerDireccionCursor = (grados) => {
     const orientacion = [
-      /* "-45","-22.5","0","22.5","45","67.5","90","112.5","135","157.5","180","202.5","225","247.5","270","292.5" */
+      /* "-45","-22.5","0","22.5","45","67.5","90","112.5","135","157.5","180","202.5","225","247.5","270","292.5" Estos son los grados que definen la direccion de los puntos cardinales*/ 
       "rotate-[-45deg]", "rotate-[-22.5deg]", "rotate-[0deg]", "rotate-[22.5deg]", "rotate-[45deg]", "rotate-[67.5deg]", "rotate-[90deg]", "rotate-[112.5deg]", "rotate-[135deg]", "rotate-[157.5deg]", "rotate-[180deg]", "rotate-[202.5deg]", "rotate-[225deg]", "rotate-[247.5deg]", "rotate-[270deg]", "rotate-[292.5deg]",
     ]
     const indiceD = Math.round(grados / 22.5) % 16;
     return orientacion[indiceD]
   }
+
   const direccionCursor = obtenerDireccionCursor(direccionVientoGrados)
 
 
@@ -152,11 +149,7 @@ export default function Face({ btn, forecastData }) {
   return (
 
     <div className=" flex justify-center items-center   md:flex-row flex-col md:w-[1440px] object-contain">
-
       <div id="main" className=" flex md:flex-row w-screen flex-col justify-center items-center md:h-screen md:w-[1440px] ">
-
-
-
         <div id="search" className=" w-full md:w-[459px] " >
           <div className=" flex flex-row w-full h-32 justify-center items-center gap-40">
             <button onClick={btn} id="button-toggle" className=" py-2 px-5 text-white bg-gray-500 font-medium">Search for places</button>
@@ -173,7 +166,7 @@ export default function Face({ btn, forecastData }) {
             </div>
           </div>
           <div className=" flex flex-row items-end justify-center">
-            <p className=" text-[#E7E7EB] text-9xl font-medium">{/* ((forecastData.list[0].main.temp)-273.15).toFixed(0) */ tempType}</p>
+            <p className=" text-[#E7E7EB] text-9xl font-medium">{tempType}</p>
             <p className=" text-[#A09FB1] text-5xl font-medium">{tempUnit}</p>
           </div>
           <div className="flex justify-center items-center p-20">
@@ -241,6 +234,7 @@ export default function Face({ btn, forecastData }) {
                 </div>
                 <div className="absolute z-0 w-[229px] h-2 bg-[#E7E7EB] rounded-xl">
                 </div>
+                {/* Aquí usamos la regla de 3 simple para covertir el porcentaje de humedad en tamaño de pixeles de la barra amarilla sobre la blanca */}
                 <div style={{ width: `${2.29 * (forecastData.list[0].main.humidity)}px` }} className="absolute z-10 h-2 bg-[#FFEC65] rounded-xl"></div>
                 <div className=" flex justify-end pt-2">
                   <p className=" text-[#A09FB1] text-xs">%</p>
@@ -264,8 +258,6 @@ export default function Face({ btn, forecastData }) {
           </div>
         </div>
       </div>
-
     </div>
-
   );
 }
