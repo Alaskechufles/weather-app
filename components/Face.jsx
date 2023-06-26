@@ -151,7 +151,7 @@ export default function Face({ btn, forecastData }) {
     <div className=" flex justify-center items-center   md:flex-row flex-col md:w-[1440px] object-contain">
       <div id="main" className=" flex md:flex-row w-screen flex-col justify-center items-center md:h-screen md:w-[1440px] ">
         <div id="search" className=" w-full md:w-[459px] " >
-          <div className=" flex flex-row w-full h-32 justify-center items-center gap-40">
+          <div className=" flex flex-row w-full h-40 justify-center items-center gap-40 px-10">
             <button onClick={btn} id="button-toggle" className=" py-2 px-5 text-white bg-gray-500 font-medium">Search for places</button>
             <button onClick={btn} className=" bg-gray-500 flex justify-center items-center p-2 rounded-full">
               <Image src={Geo} alt="icono target" />
@@ -162,14 +162,14 @@ export default function Face({ btn, forecastData }) {
               <Image src={Fondo} alt="Fondo de nubes" className=" opacity-10  object-cover w-full h-[380px]" />
             </div >
             <div className=" absolute">
-              <Image src={imagenSegunClima} alt="imagen de clima actual" className=" w-[200px] h-[230px]" />
+              <Image src={imagenSegunClima} alt="imagen de clima actual" className=" w-[200px] h-[200px]" />
             </div>
           </div>
           <div className=" flex flex-row items-end justify-center">
             <p className=" text-[#E7E7EB] text-9xl font-medium">{tempType}</p>
             <p className=" text-[#A09FB1] text-5xl font-medium">{tempUnit}</p>
           </div>
-          <div className="flex justify-center items-center p-20">
+          <div className="flex justify-center items-center p-16">
             <p className="font-semibold text-4xl text-[#A09FB1]">{forecastData.list[0].weather[0].main}</p>
           </div>
           <div className="flex flex-row justify-center items-center gap-5 text-lg text-[#A09FB1]">

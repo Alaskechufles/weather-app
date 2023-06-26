@@ -10,7 +10,7 @@ export default function Card({formatted,tMin,tMax,imagenSegunClima,tempUnit }) {
           </h2>
           </div>
         <div >
-            <Image src={imagenSegunClima} alt='imagen de clima de mañana' className=' h-[62px] w-[56px]'/>
+            <Image src={imagenSegunClima} alt='imagen de clima de mañana' className=' h-[56px] w-[56px]'/>
         </div>
         <div className='flex flex-row pt-8 gap-4 text-[#E7E7EB]'>
             <p>{tMin}{tempUnit}</p>
