@@ -29,18 +29,18 @@ const [isActive, setIsActive] = useState(false);
   const toggleTemp = () => {
     setIsActive(!isActive);
   }
-  const tempType = isActive ? (forecastData.list[0].main.temp).toFixed(0):((forecastData.list[0].main.temp)-273.15).toFixed(0)
-  const tempType2 = isActive ? (forecastData.list[12].main.temp_min).toFixed(0):((forecastData.list[12].main.temp_min)-273.15).toFixed(0)
-  const tempType3 = isActive ? (forecastData.list[20].main.temp_min).toFixed(0):((forecastData.list[20].main.temp_min)-273.15).toFixed(0)
-  const tempType4 = isActive ? (forecastData.list[28].main.temp_min).toFixed(0):((forecastData.list[28].main.temp_min)-273.15).toFixed(0)
-  const tempType5 = isActive ? (forecastData.list[36].main.temp_min).toFixed(0):((forecastData.list[36].main.temp_min)-273.15).toFixed(0)
-  const tempType6 = isActive ? (forecastData.list[39].main.temp_min).toFixed(0):((forecastData.list[39].main.temp_min)-273.15).toFixed(0)
+  const tempType = isActive ? ((((forecastData.list[0].main.temp)-273.15)*9/5)+32).toFixed(0):((forecastData.list[0].main.temp)-273.15).toFixed(0)
+  const tempType2 = isActive ? ((((forecastData.list[12].main.temp_min)-273.15)*9/5)+32).toFixed(0):((forecastData.list[12].main.temp_min)-273.15).toFixed(0)
+  const tempType3 = isActive ? ((((forecastData.list[20].main.temp_min)-273.15)*9/5)+32).toFixed(0):((forecastData.list[20].main.temp_min)-273.15).toFixed(0)
+  const tempType4 = isActive ? ((((forecastData.list[28].main.temp_min)-273.15)*9/5)+32).toFixed(0):((forecastData.list[28].main.temp_min)-273.15).toFixed(0)
+  const tempType5 = isActive ? ((((forecastData.list[36].main.temp_min)-273.15)*9/5)+32).toFixed(0):((forecastData.list[36].main.temp_min)-273.15).toFixed(0)
+  const tempType6 = isActive ? ((((forecastData.list[39].main.temp_min)-273.15)*9/5)+32).toFixed(0):((forecastData.list[39].main.temp_min)-273.15).toFixed(0)
   
-  const tempType2M = isActive ? (forecastData.list[12].main.temp_max).toFixed(0):((forecastData.list[12].main.temp_max)-273.15).toFixed(0)
-  const tempType3M = isActive ? (forecastData.list[20].main.temp_max).toFixed(0):((forecastData.list[20].main.temp_max)-273.15).toFixed(0)
-  const tempType4M = isActive ? (forecastData.list[28].main.temp_max).toFixed(0):((forecastData.list[28].main.temp_max)-273.15).toFixed(0)
-  const tempType5M = isActive ? (forecastData.list[36].main.temp_max).toFixed(0):((forecastData.list[36].main.temp_max)-273.15).toFixed(0)
-  const tempType6M = isActive ? (forecastData.list[39].main.temp_max).toFixed(0):((forecastData.list[39].main.temp_max)-273.15).toFixed(0)
+  const tempType2M = isActive ? ((((forecastData.list[12].main.temp_max)-273.15)*9/5)+32).toFixed(0):((forecastData.list[12].main.temp_max)-273.15).toFixed(0)
+  const tempType3M = isActive ? ((((forecastData.list[20].main.temp_max)-273.15)*9/5)+32).toFixed(0):((forecastData.list[20].main.temp_max)-273.15).toFixed(0)
+  const tempType4M = isActive ? ((((forecastData.list[28].main.temp_max)-273.15)*9/5)+32).toFixed(0):((forecastData.list[28].main.temp_max)-273.15).toFixed(0)
+  const tempType5M = isActive ? ((((forecastData.list[36].main.temp_max)-273.15)*9/5)+32).toFixed(0):((forecastData.list[36].main.temp_max)-273.15).toFixed(0)
+  const tempType6M = isActive ? ((((forecastData.list[39].main.temp_max)-273.15)*9/5)+32).toFixed(0):((forecastData.list[39].main.temp_max)-273.15).toFixed(0)
 
   const tempUnit = isActive ? "°F":"°C"
 
@@ -128,13 +128,19 @@ const obtenerDireccionViento = (grados) => {
   return direccion[indice];
 };
 
+
 // Uso de la función auxiliar
 const direccionVientoGrados = forecastData.list[0].wind.deg; // Ejemplo de valor en grados
 const direccionViento = obtenerDireccionViento(direccionVientoGrados);
 
 console.log(direccionViento);
 // fin de direccion del viento
-//prueba search bar dentro de face
+// para cambiar la direccion del cursor segun la direccion del viento
+/* const obtenerDireccionCursor = (grados)=>{
+  const orientacion = [
+    "-45","-22.5",""
+  ]
+} */
 
 
 
@@ -209,7 +215,7 @@ console.log(direccionViento);
               <p className=" text-[#E7E7EB] text-3xl pt-4">mph</p>
             </div>
             <div className=" flex flex-row items-center gap-2 pt-2">
-              <div className=" text-white bg-[#616475] flex justify-center items-center p-2 rounded-full">
+              <div className=" text-white bg-[#616475] flex justify-center items-center p-2 rounded-full rotate-[-45deg]">
                 <Cursor/>
               </div>
               <p className=" text-[#E7E7EB]">{direccionViento}</p>
