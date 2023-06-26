@@ -11,11 +11,11 @@ export default function SearchBar({btn2,value,onChange,handleSearch,specificSear
             </button>
         </div>
         <div className="flex flex-row justify-center items-center gap-3 h-24 ">
-            <div className="flex flex-row justify-center items-center border border-white h-12 w-full gap-3 p-2">
+            <div className="flex flex-row justify-center items-center border border-white h-12 w-[60%] md:w-[80%] gap-3 p-2">
                 <div className=" text-[#616475]">    
                     <SearchIcon/>
                 </div>
-                <input id="locationInput"  value={value} onChange={onChange} type="text" placeholder="search location" className=" h-10 bg-[#1E213A] placeholder:text-[#616475] outline-none"/>
+                <input id="locationInput"  value={value} onChange={onChange} type="text" placeholder="search location" className=" h-10 bg-[#1E213A] placeholder:text-[#616475] outline-none w-full"/>
             </div>
             <button className=" bg-[#3C47E9] p-[15px]" onClick={()=>{handleSearch();btn2()}}>Search</button>
         </div>

@@ -151,7 +151,7 @@ export default function Face({ btn, forecastData }) {
     <div className=" flex justify-center items-center   md:flex-row flex-col md:w-[1440px] object-contain">
       <div id="main" className=" flex md:flex-row w-screen flex-col justify-center items-center md:h-screen md:w-[1440px] ">
         <div id="search" className=" w-full md:w-[459px] " >
-          <div className=" flex flex-row w-full h-40 justify-center items-center gap-40 px-10">
+          <div className=" flex flex-row w-full h-40 justify-center items-center gap-28 px-6">
             <button onClick={btn} id="button-toggle" className=" py-2 px-5 text-white bg-gray-500 font-medium">Search for places</button>
             <button onClick={btn} className=" bg-gray-500 flex justify-center items-center p-2 rounded-full">
               <Image src={Geo} alt="icono target" />
