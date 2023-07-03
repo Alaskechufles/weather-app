@@ -20,14 +20,18 @@ export default function SearchBar({btn2,value,onChange,handleSearch,specificSear
             <button className=" bg-[#3C47E9] p-[15px]" onClick={()=>{handleSearch();btn2()}}>Search</button>
         </div>
         <div className="flex flex-col w-full justify-center items-center ">
-            <button onClick={()=>{specificSearch1();btn2()}} value="London" className=" flex flex-row justify-between items-center w-2/3 h-16 hover:border hover:border-[#616475] pl-3 pr-2">
-                London      
+            <button onClick={()=>{specificSearch1();btn2()}} value="London" className=" flex flex-row items-center justify-between w-2/3 lg:w-[75%] h-16 hover:border hover:border-[#616475] pl-3 pr-2 relative">
+                
+                <p >London</p>
+                <p className=" absolute flex justify-end items-center w-full h-full right-2 opacity-0 hover:opacity-100">&gt;</p>
             </button>
-            <button  onClick={()=>{specificSearch2();btn2()}} value="Arequipa" className=" flex flex-row justify-between items-center w-2/3 h-16 hover:border hover:border-[#616475] pl-3 pr-2">
-                Barcelona     
+            <button  onClick={()=>{specificSearch2();btn2()}} value="Barcelona" className=" flex flex-row justify-between items-center w-2/3 h-16 hover:border hover:border-[#616475] pl-3 pr-2 relative lg:w-[75%]">
+            <p >Barcelona</p>
+                <p className=" absolute flex justify-end items-center w-full h-full right-2 opacity-0 hover:opacity-100">&gt;</p>     
             </button>
-            <button onClick={()=>{specificSearch3();btn2()}} value="Lima" className=" flex flex-row justify-between items-center w-2/3 h-16 hover:border hover:border-[#616475] pl-3 pr-2">
-                Long Beach     
+            <button onClick={()=>{specificSearch3();btn2()}} value="Long Beach" className=" flex flex-row justify-between items-center w-2/3 h-16 hover:border hover:border-[#616475] pl-3 pr-2 relative lg:w-[75%]">
+            <p >Long Beach</p>
+                <p className=" absolute flex justify-end items-center w-full h-full right-2 opacity-0 hover:opacity-100">&gt;</p>  
             </button>
         </div>
     </div>

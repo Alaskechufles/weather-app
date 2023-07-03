@@ -21,19 +21,18 @@ import Fondo from '@/public/Cloud-background.png'
 
 import React, { useEffect, useState } from 'react';
 
-export default function Face({ btn, forecastData }) {
+export default function Face({ btn, forecastData,capturarLocation }) {
   //prueba cambio de °C a °F
   const [isActive, setIsActive] = useState(false);
   const toggleTemp = () => {
     setIsActive(!isActive);
   }
-  const tempType = isActive ? ((((forecastData.list[0].main.temp) - 273.15) * 9 / 5) + 32).toFixed(0) : ((forecastData.list[0].main.temp) - 273.15).toFixed(0)
+  const tempType = isActive ? ((((forecastData.list[4].main.temp) - 273.15) * 9 / 5) + 32).toFixed(0) : ((forecastData.list[4].main.temp) - 273.15).toFixed(0)
   const tempType2 = isActive ? ((((forecastData.list[12].main.temp_min) - 273.15) * 9 / 5) + 32).toFixed(0) : ((forecastData.list[12].main.temp_min) - 273.15).toFixed(0)
   const tempType3 = isActive ? ((((forecastData.list[20].main.temp_min) - 273.15) * 9 / 5) + 32).toFixed(0) : ((forecastData.list[20].main.temp_min) - 273.15).toFixed(0)
   const tempType4 = isActive ? ((((forecastData.list[28].main.temp_min) - 273.15) * 9 / 5) + 32).toFixed(0) : ((forecastData.list[28].main.temp_min) - 273.15).toFixed(0)
   const tempType5 = isActive ? ((((forecastData.list[36].main.temp_min) - 273.15) * 9 / 5) + 32).toFixed(0) : ((forecastData.list[36].main.temp_min) - 273.15).toFixed(0)
   const tempType6 = isActive ? ((((forecastData.list[39].main.temp_min) - 273.15) * 9 / 5) + 32).toFixed(0) : ((forecastData.list[39].main.temp_min) - 273.15).toFixed(0)
-
   const tempType2M = isActive ? ((((forecastData.list[12].main.temp_max) - 273.15) * 9 / 5) + 32).toFixed(0) : ((forecastData.list[12].main.temp_max) - 273.15).toFixed(0)
   const tempType3M = isActive ? ((((forecastData.list[20].main.temp_max) - 273.15) * 9 / 5) + 32).toFixed(0) : ((forecastData.list[20].main.temp_max) - 273.15).toFixed(0)
   const tempType4M = isActive ? ((((forecastData.list[28].main.temp_max) - 273.15) * 9 / 5) + 32).toFixed(0) : ((forecastData.list[28].main.temp_max) - 273.15).toFixed(0)
@@ -41,11 +40,9 @@ export default function Face({ btn, forecastData }) {
   const tempType6M = isActive ? ((((forecastData.list[39].main.temp_max) - 273.15) * 9 / 5) + 32).toFixed(0) : ((forecastData.list[39].main.temp_max) - 273.15).toFixed(0)
   //para cambiar las unidades de °F o °C
   const tempUnit = isActive ? "°F" : "°C"
-
   //para formatear la fecha
   const timestamp = forecastData.list[4].dt// Ejemplo de marca de tiempo
   const date = new Date(timestamp * 1000);
-
   const options = { weekday: 'short', day: 'numeric', month: 'short' };
   const formattedDate = date.toLocaleDateString('en-US', options);
   //fin de formatear la fecha
@@ -54,27 +51,20 @@ export default function Face({ btn, forecastData }) {
   const date2 = new Date(dayT2 * 1000)
   const optionsT = { weekday: 'long' }
   const formatted2 = date2.toLocaleDateString('en-US', optionsT);
-  console.log(formatted2)
   const dayT3 = forecastData.list[28].dt
   const date3 = new Date(dayT3 * 1000)
   const formatted3 = date3.toLocaleDateString('en-US', optionsT);
-  console.log(formatted3)
   const dayT4 = forecastData.list[36].dt
   const date4 = new Date(dayT4 * 1000)
   const formatted4 = date4.toLocaleDateString('en-US', optionsT);
-  console.log(formatted4)
   const dayT5 = forecastData.list[39].dt
   const date5 = new Date(dayT5 * 1000)
   const formatted5 = date5.toLocaleDateString('en-US', optionsT);
-  console.log(formatted5)
-
   //fin agregar los dias de las cartas
   //para cambiar la img del clima
   const obtenerImg = (idClima) => {
     const imgClima = [Shower, Clear, Hail, HeavyCloud, HeavyRain, LightCloud, LightRain, Sleet, Snow, Thunderstorm]
     let index = 0
-    console.log(index)
-
     if (idClima >= 200 && idClima <= 232) {
       index += 9
     } else if (idClima >= 300 && idClima <= 321) {
@@ -96,7 +86,6 @@ export default function Face({ btn, forecastData }) {
     } else {
       index = 0
     }
-    console.log(index)
     return imgClima[index]
   }
   const idSegunClima = forecastData.list[0].weather[0].id
@@ -105,15 +94,12 @@ export default function Face({ btn, forecastData }) {
   const idSegunClima4 = forecastData.list[28].weather[0].id
   const idSegunClima5 = forecastData.list[36].weather[0].id
   const idSegunClima6 = forecastData.list[39].weather[0].id
-  console.log(idSegunClima)
   const imagenSegunClima = obtenerImg(idSegunClima)
   const imagenSegunClima2 = obtenerImg(idSegunClima2)
   const imagenSegunClima3 = obtenerImg(idSegunClima3)
   const imagenSegunClima4 = obtenerImg(idSegunClima4)
   const imagenSegunClima5 = obtenerImg(idSegunClima5)
   const imagenSegunClima6 = obtenerImg(idSegunClima6)
-  console.log(imagenSegunClima)
-
   //fin para cambiar img del clima
   //para cambiar direccion del viento de grados a direccion
   const obtenerDireccionViento = (grados) => {
@@ -121,16 +107,12 @@ export default function Face({ btn, forecastData }) {
       "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
       "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW",
     ];
-
     const indice = Math.round(grados / 22.5) % 16;
     return direccion[indice];
   };
-
   // Uso de la función auxiliar para comvertir grados a direccion cardinal
   const direccionVientoGrados = forecastData.list[0].wind.deg; // Ejemplo de valor en grados
   const direccionViento = obtenerDireccionViento(direccionVientoGrados);
-
-  console.log(direccionViento);
   // fin de direccion del viento
   // para cambiar la direccion del cursor segun la direccion del viento
   const obtenerDireccionCursor = (grados) => {
@@ -141,19 +123,14 @@ export default function Face({ btn, forecastData }) {
     const indiceD = Math.round(grados / 22.5) % 16;
     return orientacion[indiceD]
   }
-
   const direccionCursor = obtenerDireccionCursor(direccionVientoGrados)
-
-
-
   return (
-
-    <div className=" flex justify-center items-center   md:flex-row flex-col md:w-[1440px] object-contain">
-      <div id="main" className=" flex md:flex-row w-screen flex-col justify-center items-center md:h-screen md:w-[1440px] ">
-        <div id="search" className=" w-full md:w-[459px] " >
+    <div className=" flex justify-center items-center   lg:flex-row flex-col lg:w-[1440px] object-contain lg:object-cover">
+      <div id="main" className=" flex lg:flex-row w-screen flex-col justify-center items-center lg:h-screen lg:w-[1440px] ">
+        <div id="search" className=" w-full lg:w-[459px] " >
           <div className=" flex flex-row w-full h-40 justify-center items-center gap-28 px-6">
             <button onClick={btn} id="button-toggle" className=" py-2 px-5 text-white bg-gray-500 font-medium">Search for places</button>
-            <button onClick={btn} className=" bg-gray-500 flex justify-center items-center p-2 rounded-full">
+            <button onClick={capturarLocation} className=" bg-gray-500 flex justify-center items-center p-2 rounded-full">
               <Image src={Geo} alt="icono target" />
             </button>
           </div>
@@ -184,8 +161,8 @@ export default function Face({ btn, forecastData }) {
             <p className=" text-lg">{forecastData.city.name}</p>
           </div>
         </div>
-        <div className=" flex flex-col  bg-[#100E1D] w-full items-center md:w-[981px] md:h-screen justify-center md:pb-12">
-          <div className="flex flex-row h-32 items-center md:justify-end gap-3 md:w-full w-4/5 justify-center md:pr-40">
+        <div className=" flex flex-col  bg-[#100E1D] w-full items-center lg:w-[981px] lg:h-screen justify-center lg:pb-12">
+          <div className="flex flex-row h-32 items-center lg:justify-end gap-3 lg:w-full w-4/5 justify-center lg:pr-40">
             <div className=" text-lg w-12 h-12 bg-[#E7E7EB] rounded-full font-bold flex justify-center items-center hover:cursor-pointer">
               <button className=" text-lg w-12 h-12 bg-[#E7E7EB] rounded-full font-bold flex justify-center items-center hover:cursor-pointer" onClick={toggleTemp}>°C</button>
             </div>
@@ -193,8 +170,7 @@ export default function Face({ btn, forecastData }) {
               <button className=" text-lg w-12 h-12 bg-[#585676] rounded-full font-bold flex justify-center items-center text-white hover:cursor-pointer" onClick={toggleTemp}>°F</button>
             </div>
           </div>
-          <div className="flex flex-row flex-wrap gap-6 w-full md:w-[980px] justify-center p-10 md:p-0">
-            {/*Aqui insertar componente de carta*/}
+          <div className="flex flex-row flex-wrap gap-6 w-full lg:w-[980px] justify-center p-10 lg:p-0">
             <Card formatted={"Tomorrow"} tMin={tempType2} tMax={tempType2M} imagenSegunClima={imagenSegunClima2} tempUnit={tempUnit} />
             <Card formatted={formatted2} tMin={tempType3} tMax={tempType3M} imagenSegunClima={imagenSegunClima3} tempUnit={tempUnit} />
             <Card formatted={formatted3} tMin={tempType4} tMax={tempType4M} imagenSegunClima={imagenSegunClima4} tempUnit={tempUnit} />
@@ -204,7 +180,7 @@ export default function Face({ btn, forecastData }) {
           <div className=" font-bold text-[#E7E7EB] pt-[72px] pb-8 text-2xl">
             <p>Today&apos;s Hightlights</p>
           </div>
-          <div className="flex flex-row flex-wrap gap-12 justify-center mb-20 md:mb-5 w-full">
+          <div className="flex flex-row flex-wrap gap-12 justify-center mb-20 lg:mb-5 w-full">
             <div className=" w-[328px] h-[204px] bg-[#1E213A] flex flex-col justify-center items-center">
               <p className=" text-[#E7E7EB] ">Wind status</p>
               <div className="  flex flex-row items-center" >

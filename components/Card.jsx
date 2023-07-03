@@ -15,6 +15,7 @@ export default function Card({formatted,tMin,tMax,imagenSegunClima,tempUnit }) {
         <div className='flex flex-row pt-8 gap-4 text-[#E7E7EB]'>
             <p>{tMin}{tempUnit}</p>
             <p>{tMax}{tempUnit}</p>
+            
         </div>
     </div>
   )
